@@ -1,4 +1,20 @@
-Documentation:
+require: rubocop-rails
+
+Rails:
+  Enabled: true
+
+AllCops:
+  Exclude:
+    - "db/schema.rb"
+    - "vendor/**/*"
+    - "node_modules/**/*"
+    - "bin/*"
+
+# 日本語でのコメントを許可
+Style/AsciiComments:
+  Enabled: false
+
+Style/Documentation:
   Enabled: false
 Style/FrozenStringLiteralComment:
   Enabled: false

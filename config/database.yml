@@ -27,6 +27,8 @@ development:
   database: zsksample
   username: postgres
   password: postgres
+  # See: https://stackoverflow.com/questions/59089991/ruby-2-6-5-and-postgresql-pg-gem-segmentation-fault
+  gssencmode: disable
 
   # The specified database role being used to connect to postgres.
   # To create additional roles in postgres see `$ createuser --help`.
@@ -55,7 +57,12 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
+  host: localhost
   database: zsksample_test
+  username: postgres
+  password: postgres
+  # See: https://stackoverflow.com/questions/59089991/ruby-2-6-5-and-postgresql-pg-gem-segmentation-fault
+  gssencmode: disable
 
 # As with config/credentials.yml, you never want to store sensitive information,
 # like your database password, in your source code. If your source code is
