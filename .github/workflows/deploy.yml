@@ -12,6 +12,9 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
+        with:
+          # required to prevent shallow update errors on push
+          fetch-depth: 0
       - name: Execute deploy
         shell: bash
         env:
@@ -30,7 +33,6 @@ jobs:
           chmod 600 ~/.netrc
           heroku git:remote -a ${{ secrets.HEROKU_APP_NAME }}
           heroku maintenance:on --app ${{ secrets.HEROKU_APP_NAME }}
-          git pull heroku master
-          git push heroku master
+          git push -f heroku master
           heroku run rake db:migrate --app ${{ secrets.HEROKU_APP_NAME }}
           heroku maintenance:off --app ${{ secrets.HEROKU_APP_NAME }}
