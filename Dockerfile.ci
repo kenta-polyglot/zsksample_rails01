@@ -16,3 +16,7 @@ RUN wget https://github.com/hadolint/hadolint/releases/download/${hadolint_versi
     chmod +x hadolint-Linux-x86_64 && \
     mv ./hadolint-Linux-x86_64 /usr/local/bin/hadolint
 
+# install heroku cli
+RUN wget https://cli-assets.heroku.com/heroku-linux-x64.tar.gz && \
+    tar xf heroku-linux-x64.tar.gz -C /usr/local/lib && \
+    ln -s /usr/local/lib/heroku/bin/heroku /usr/local/bin/heroku
