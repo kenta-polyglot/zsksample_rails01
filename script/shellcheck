@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+function check() {
+  local cwd="$1"
+  local dirs=("${cwd}" "${cwd}/config" "${cwd}/lib")
+  for dir in "${dirs[@]}"; do
+    if [[ -d "${dir}" ]]; then
+      for script in $(find "${dir}" -maxdepth 1 -type f); do
+        shellcheck ${script}
+      done
+    fi
+  done
+}
+
+function main() {
+  local cwd
+  cwd="$(cd "$(dirname "$0")" && pwd)"
+  check "${cwd}"
+}
+
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+  main "$@"
+fi
