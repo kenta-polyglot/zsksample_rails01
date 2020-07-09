@@ -31,7 +31,7 @@ jobs:
             password ${HEROKU_API_KEY}
           EOF
           chmod 600 ~/.netrc
-          heroku git:remote -a ${{ secrets.HEROKU_APP_NAME }}
+          heroku git:remote --app ${{ secrets.HEROKU_APP_NAME }}
           heroku maintenance:on --app ${{ secrets.HEROKU_APP_NAME }}
           git push -f heroku master
           heroku run rake db:migrate --app ${{ secrets.HEROKU_APP_NAME }}
