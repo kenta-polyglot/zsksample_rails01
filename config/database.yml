@@ -57,7 +57,7 @@ development:
 # Do not set this db to the same as development or production.
 test:
   <<: *default
-  host: localhost
+  host: <%= ENV['RAILS_DATABASE_HOST'] || 'localhost' %>
   database: zsksample_test
   username: postgres
   password: postgres

@@ -1,0 +1,20 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+function lint() {
+  local cwd="$1"
+  for dockerfile in $(find "${cwd}/../" -maxdepth 1 -type f -name 'Dockerfile*'); do
+    hadolint ${dockerfile}
+  done
+}
+
+function main() {
+  local cwd
+  cwd="$(cd "$(dirname "$0")" && pwd)"
+  lint "${cwd}"
+}
+
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+  main "$@"
+fi

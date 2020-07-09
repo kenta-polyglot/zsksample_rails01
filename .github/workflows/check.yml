@@ -7,18 +7,20 @@ on:
 jobs:
   check:
     runs-on: ubuntu-latest
-
-    env:
-      RAILS_ENV: test
-      DATABASE_URL: "postgres://postgres:postgres@localhost/zsksample_test"
+    container:
+      image: polysoft/zsksample-rails-ci:latest
+      env:
+        RAILS_ENV: test
+        RAILS_DATABASE_HOST: postgres
 
     services:
       postgres:
-        image: postgres:12.3
+        image: postgres:12.3-alpine
+        env:
+          POSTGRES_USER: postgres
+          POSTGRES_PASSWORD: postgres
         ports:
           - 5432:5432
-        env:
-          POSTGRES_PASSWORD: postgres
         options: >-
           --health-cmd pg_isready
           --health-interval 10s
@@ -27,10 +29,28 @@ jobs:
 
     steps:
       - uses: actions/checkout@v2
-      - uses: ruby/setup-ruby@v1
+      - name: Cache gems
+        uses: actions/cache@v2
         with:
-          bundler-cache: true
-      - run: bundle exec rubocop
-      - run: bundle exec rake db:setup
-      - run: bundle exec rake webpacker:install
-      - run: bundle exec rake test
+          path: vendor/bundle
+          key: ${{ runner.os }}-gem-${{ hashFiles('**/Gemfile.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-gem-
+      - name: Cache node packages
+        uses: actions/cache@v1
+        with:
+          path: node_modules
+          key: ${{ runner.os }}-yarn-${{ hashFiles('**/yarn.lock') }}
+          restore-keys: |
+            ${{ runner.os }}-yarn-
+      - name: Execute check
+        shell: bash
+        run: |
+          script/shellcheck
+          script/dockerlint
+          bundle config path vendor/bundle
+          bundle install --jobs 4 --retry 3
+          bundle exec rubocop
+          bundle exec rake db:setup
+          yarn
+          bundle exec rake test

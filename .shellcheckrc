@@ -1,0 +1,5 @@
+disable=SC2154
+disable=SC2086
+disable=SC1090
+disable=SC2044
+disable=SC1117

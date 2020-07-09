@@ -1,0 +1,25 @@
+#!/usr/bin/env bash
+
+set -euo pipefail
+
+readonly OrganizationName=polysoft
+readonly RepositoryName=zsksample-rails-ci
+
+function build_and_push_image() {
+  local cwd="$1"
+  docker build -t ${RepositoryName} -f Dockerfile.ci "${cwd}/.."
+  docker tag ${RepositoryName}:latest ${OrganizationName}/${RepositoryName}:latest
+  docker push ${OrganizationName}/${RepositoryName}:latest
+}
+
+function main() {
+  echo "Start to build and push docker image for CI."
+  echo "If push denied, execute "docker login" command and log in to DockerHub"
+  local cwd
+  cwd="$(cd "$(dirname "$0")" && pwd)"
+  build_and_push_image "${cwd}"
+}
+
+if [[ "${BASH_SOURCE[0]}" == "${0}" ]]; then
+  main "$@"
+fi
