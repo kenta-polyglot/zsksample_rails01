@@ -16,5 +16,10 @@ Style/AsciiComments:
 
 Style/Documentation:
   Enabled: false
+
 Style/FrozenStringLiteralComment:
   Enabled: false
+
+Metrics/BlockLength:
+  Exclude:
+    - 'spec/**/*'
