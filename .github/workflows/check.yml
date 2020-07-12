@@ -53,4 +53,4 @@ jobs:
           bundle exec rubocop
           bundle exec rake db:setup
           yarn
-          bundle exec rake test
+          bundle exec rspec
