@@ -142,7 +142,5 @@ bundle exec rspec
   - 一応Reviewersにチームメンバー全員を設定して、Assigneesに自分自身を設定しておいてください。
 - GitHub ActionsのCheckワークフローが完了したら、ReviewersのどなたかがApproveしてください。
 - このプルリクをマージすると、GitHub ActionsのDeployワークフロー(`.github/workflows/deploy.yml`で定義されています)が実行され、[こちら](https://github.com/kenta-polyglot/zsksample_rails01/wiki/GitHub%E3%81%A8ZenHub%E3%81%AE%E8%A8%AD%E5%AE%9A)のwikiの作業で事前に設定されているGitHub Secretsの情報を使用して、Herokuへのデプロイが実行されます。
-- デプロイ完了後は、
-- このプルリクをマージすると、GitHub ActionsのDeployワークフロー(`.github/workflows/deploy.yml`で定義されています)が実行され、[こちら](https://github.com/kenta-polyglot/zsksample_rails01/wiki/GitHub%E3%81%A8ZenHub%E3%81%AE%E8%A8%AD%E5%AE%9A)のwikiの作業で事前に設定されているGitHub Secretsの情報を使用して、Herokuへのデプロイが実行されます。「
 - デプロイ完了後は、https://アプリケーション名.herokuapp.com/users でアプリケーションが参照できるようになります。
-- デプロイが成功したら、[こちら](https://docs.github.com/ja/enterprise/2.15/user/articles/creating-releases)のドキュメントを参考にして、masterブランチの最新コミットに対してリリースとタグを設定しておきましょう。(最初のバージョンのリリース名とタグ名は「v0.0.1」でよいでしょう。以降「v0.0.2」や「v0.0.3」のように、新しいコミットをdevelopブランチからマージしてデプロイした際は新しいタグを追加していってください。
+- デプロイが成功したら、[こちら](https://docs.github.com/ja/enterprise/2.15/user/articles/creating-releases)のドキュメントを参考にして、masterブランチの最新コミットに対してリリースとタグを設定しておきましょう。(最初のバージョンのリリース名とタグ名は「v0.0.1」でよいでしょう。以降「v0.0.2」や「v0.0.3」のように、新しいコミットをdevelopブランチからマージしてデプロイした際は新しいタグを追加していってください)
