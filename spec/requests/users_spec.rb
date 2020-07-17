@@ -19,7 +19,7 @@ RSpec.describe '/users', type: :request do
   before do
     @user = create(:user)
   end
-  let(:user_params) { FactoryBot.attributes_for(:user)  }
+  let(:user_params) { FactoryBot.attributes_for(:user) }
 
   describe 'GET /index' do
     it 'renders a successful response' do
@@ -55,7 +55,6 @@ RSpec.describe '/users', type: :request do
     context 'with valid parameters' do
       it 'creates a new User' do
         expect do
-
           post users_url, params: { user: user_params }
         end.to change(User, :count).by(1)
       end
@@ -65,12 +64,10 @@ RSpec.describe '/users', type: :request do
         expect(response).to redirect_to(user_url(User.last))
       end
     end
-
   end
 
   describe 'PATCH /update' do
     context 'with valid parameters' do
-
       it 'updates the requested user' do
         user = User.create!
         patch user_url(user), params: { user: user_params }
@@ -84,7 +81,6 @@ RSpec.describe '/users', type: :request do
         expect(response).to redirect_to(user_url(user))
       end
     end
-
   end
 
   describe 'DELETE /destroy' do
