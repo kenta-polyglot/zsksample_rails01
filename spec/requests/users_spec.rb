@@ -16,9 +16,13 @@ RSpec.describe '/users', type: :request do
   # User. As you add validations to User, be sure to
   # adjust the attributes here as well.
 
+  before do
+    @user = create(:user)
+  end
+  let(:user_params) { FactoryBot.attributes_for(:user)  }
+
   describe 'GET /index' do
     it 'renders a successful response' do
-      User.create!
       get users_url
       expect(response).to be_successful
     end
@@ -51,58 +55,36 @@ RSpec.describe '/users', type: :request do
     context 'with valid parameters' do
       it 'creates a new User' do
         expect do
-          post users_url, params: { user: @user }
+
+          post users_url, params: { user: user_params }
         end.to change(User, :count).by(1)
       end
 
       it 'redirects to the created user' do
-        post users_url, params: { user: valid_attributes }
+        post users_url, params: { user: user_params }
         expect(response).to redirect_to(user_url(User.last))
       end
     end
 
-    context 'with invalid parameters' do
-      it 'does not create a new User' do
-        expect do
-          post users_url, params: { user: invalid_attributes }
-        end.to change(User, :count).by(0)
-      end
-
-      it "renders a successful response (i.e. to display the 'new' template)" do
-        post users_url, params: { user: invalid_attributes }
-        expect(response).to be_successful
-      end
-    end
   end
 
   describe 'PATCH /update' do
     context 'with valid parameters' do
-      let(:new_attributes) do
-        skip('Add a hash of attributes valid for your model')
-      end
 
       it 'updates the requested user' do
         user = User.create!
-        patch user_url(user), params: { user: new_attributes }
+        patch user_url(user), params: { user: user_params }
         user.reload
-        skip('Add assertions for updated state')
       end
 
       it 'redirects to the user' do
         user = User.create!
-        patch user_url(user), params: { user: new_attributes }
+        patch user_url(user), params: { user: user_params }
         user.reload
         expect(response).to redirect_to(user_url(user))
       end
     end
 
-    context 'with invalid parameters' do
-      it "renders a successful response (i.e. to display the 'edit' template)" do
-        user = User.create!
-        patch user_url(user), params: { user: invalid_attributes }
-        expect(response).to be_successful
-      end
-    end
   end
 
   describe 'DELETE /destroy' do
