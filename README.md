@@ -16,6 +16,19 @@
 - GitHubやZenHubの設定が完了したら、forkしたリポジトリをローカルにcloneして、下記の手順で開発環境を構築してください。
   - fork元のリポジトリではなく、必ずfork先のリポジトリからcloneするようにしてください。
 
+- チーム代表者の方は、下記の手順を実行して`config/credentials.yml.enc`および`config/master.key`を再作成して、`config/master.key`をチームの他のメンバーの方たちに共有してください。(この作業も作業ブランチを作成しておこなってください。また、`master.key`は一応SlackのDMを使用してお渡しする方が望ましいと思います)
+  - チームの他のメンバーの方たちは、代表者の方たちから共有された`master.key`を、リポジトリの`config/master.key`にコピーしておいてください。
+  - `config/master.key`はバージョン管理に含まれていないためリポジトリをforkしてきた段階では作成されていないのでご注意ください。
+```
+# 既存のconfig/credentials.yml.encを削除
+rm -f config/credentials.yml.enc
+
+# 下記のコマンドを実行して特に編集は行わずに:wqで保存する
+EDITOR=vim rails credentials:edit
+
+# config/credentials.yml.encとconfig/master.keyが再作成される
+```
+
 ## rbenvとRubyのインストール
 
 - 下記のページの情報等を参考にして、必要に応じてrbenvとRubyのインストールを行ってください。
@@ -117,7 +130,7 @@ bundle exec rspec
     - スプリント期間は1週間です。
   - Estimateに見積もり工数を入力する。
     - 「0.1 = 1時間」「1 = 1日」として換算してください。
-  
+
 ## タスクの対応とコードレビュー
 
 - Issueへの対応が完了したら、作業ブランチをpushして、developブランチに対してプルリクを発行してください。
