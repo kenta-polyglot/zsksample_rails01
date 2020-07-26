@@ -24,22 +24,38 @@ RSpec.describe '/users', type: :request do
   end
 
   describe 'GET /index' do
+    # ダミーデータ作成（factories/user.rb）
+    before do
+      FactoryBot.create :test1
+    end
+    # リクエストが成功すること
     it 'renders a successful response' do
-      User.create! valid_attributes
       get users_url
       expect(response).to be_successful
+    end
+    # ダミーデータが表示されること
+    it 'username index' do
+      get users_url
+      expect(response.body).to include "test1"
     end
   end
 
   describe 'GET /show' do
+    let(:test1) { FactoryBot.create :test1 }
     it 'renders a successful response' do
-      user = User.create! valid_attributes
-      get user_url(user)
+      get user_url(test1)
       expect(response).to be_successful
+    end
+
+    # ダミーデータが表示されること
+    it 'user show' do
+      get user_url(test1)
+      expect(response.body).to include 'test1'
     end
   end
 
   describe 'GET /new' do
+    # リクエストが成功すること
     it 'renders a successful response' do
       get new_user_url
       expect(response).to be_successful
@@ -47,82 +63,64 @@ RSpec.describe '/users', type: :request do
   end
 
   describe 'GET /edit' do
+    let(:test1) { FactoryBot.create :test1 }
+    # リクエストが成功すること
     it 'render a successful response' do
-      user = User.create! valid_attributes
-      get edit_user_url(user)
+      get edit_user_url(test1)
       expect(response).to be_successful
+    end
+    # ユーザ名が表示されること
+    it 'username edit' do
+      get edit_user_url(test1)
+      expect(response.body).to include 'test1'
     end
   end
 
   describe 'POST /create' do
-    context 'with valid parameters' do
+      # ユーザが新規作成されること
       it 'creates a new User' do
         expect do
-          post users_url, params: { user: valid_attributes }
+        post users_url, params: { user: FactoryBot.attributes_for(:user) }
         end.to change(User, :count).by(1)
       end
-
+      # リダイレクトすること
       it 'redirects to the created user' do
-        post users_url, params: { user: valid_attributes }
+        post users_url, params: { user: FactoryBot.attributes_for(:user) }
         expect(response).to redirect_to(user_url(User.last))
       end
     end
 
-    context 'with invalid parameters' do
-      it 'does not create a new User' do
-        expect do
-          post users_url, params: { user: invalid_attributes }
-        end.to change(User, :count).by(0)
-      end
-
-      it "renders a successful response (i.e. to display the 'new' template)" do
-        post users_url, params: { user: invalid_attributes }
-        expect(response).to be_successful
-      end
-    end
-  end
-
   describe 'PATCH /update' do
-    context 'with valid parameters' do
-      let(:new_attributes) do
-        skip('Add a hash of attributes valid for your model')
+    let(:test1) { FactoryBot.create :test1 }
+      # リクエストが成功すること
+      it 'request to update user' do
+        patch user_url(test1), params: { user: FactoryBot.attributes_for(:user) }
+        test1.reload
       end
-
-      it 'updates the requested user' do
-        user = User.create! valid_attributes
-        patch user_url(user), params: { user: new_attributes }
-        user.reload
-        skip('Add assertions for updated state')
+      # ユーザ名が更新されること
+      it 'update username' do
+        expect do
+          patch user_url(test1), params: { user: FactoryBot.attributes_for(:user) }
+        end.to change { User.find(test1.id).name }.from('test1').to('test')
       end
-
+      # リダイレクトすること
       it 'redirects to the user' do
-        user = User.create! valid_attributes
-        patch user_url(user), params: { user: new_attributes }
-        user.reload
-        expect(response).to redirect_to(user_url(user))
+        patch user_url(test1), params: { user: FactoryBot.attributes_for(:user) }
+        expect(response).to redirect_to User.last
       end
     end
-
-    context 'with invalid parameters' do
-      it "renders a successful response (i.e. to display the 'edit' template)" do
-        user = User.create! valid_attributes
-        patch user_url(user), params: { user: invalid_attributes }
-        expect(response).to be_successful
-      end
-    end
-  end
 
   describe 'DELETE /destroy' do
-    it 'destroys the requested user' do
-      user = User.create! valid_attributes
+    let!(:test1) { FactoryBot.create :test1 }
+    # ユーザが削除されること
+    it 'destroy user' do
       expect do
-        delete user_url(user)
+        delete user_url test1
       end.to change(User, :count).by(-1)
     end
-
+    # リダイレクトすること
     it 'redirects to the users list' do
-      user = User.create! valid_attributes
-      delete user_url(user)
+      delete user_url test1
       expect(response).to redirect_to(users_url)
     end
   end
