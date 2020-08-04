@@ -15,8 +15,7 @@ function check() {
 }
 
 function main() {
-  local cwd
-  cwd="$(cd "$(dirname "$0")" && pwd)"
+  local cwd="$(cd "$(dirname "$0")" && pwd)"
   check "${cwd}"
 }
 
