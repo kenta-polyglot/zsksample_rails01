@@ -17,9 +17,9 @@
 default: &default
   adapter: postgresql
   encoding: unicode
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
   # For details on connection pooling, see Rails configuration guide
   # https://guides.rubyonrails.org/configuring.html#database-pooling
-  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
 
 development:
   <<: *default
@@ -85,6 +85,6 @@ test:
 #
 production:
   <<: *default
-  database: zsksample
-  username: zsksample
+  database: zsksample_rails01_production
+  username: zsksample_rails01
   password: <%= ENV['ZSKSAMPLE_DATABASE_PASSWORD'] %>
