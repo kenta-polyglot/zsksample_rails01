@@ -93,6 +93,17 @@ bundle exec rspec
 
 - 作業内容はRails TutorialのToyアプリケーションの作成とほぼ同様です。
 
+## Scrumに関するドキュメントを一読しておく
+
+- デイリースクラムやスプリントレトロスペクティブ(振り返り)等はコストが大きすぎるため省略しますが、「Scrumのおおよその工程」や「今自分のやっている作業はScrum開発のどの部分に該当するのか」をイメージできるように、最低限下記の記事等を読んでおくようにしてください。
+
+  - [スクラム入門](https://qiita.com/wMETAw/items/25972e4708311ed4f779)
+  - [認定スクラムマスターの俺が正しいスクラムの理論をまとめてみた](https://qiita.com/gold-kou/items/90ba982a14ca79d843c9)
+
+- 時間に余裕のある方は「SCRUM BOOTCAMP THE BOOK」にも目を通しておくとよいでしょう。
+
+  - [SCRUM BOOT CAMP THE BOOK](https://www.amazon.co.jp/dp/B086GBXRN6)
+
 ## Epicの追加
 
 - ZenHubのBoardの「Epic」パイプラインに、下記のエピックを追加してください。(こちらは「プロダクトバックログ」のようなものと考えてください)
