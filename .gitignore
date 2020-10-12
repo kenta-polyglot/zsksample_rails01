@@ -78,4 +78,3 @@ docker-compose.yml
 Dockerfile.ci
 Docker
 database.yml
-docker-compose.yml
