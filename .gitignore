@@ -76,5 +76,4 @@ yarn-debug.log*
 # Added ignore files
 docker-compose.yml
 Dockerfile.ci
-Docker
 database.yml
