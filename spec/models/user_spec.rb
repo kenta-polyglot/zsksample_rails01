@@ -14,7 +14,7 @@ RSpec.describe User, type: :model do
   end
 
   it 'name should be not be too long' do
-    user = User.new(name: 'a'*51, email: 'hoge@gmail.com')
+    user = User.new(name: 'a' * 51, email: 'hoge@gmail.com')
     expect(user).not_to be_valid
   end
 
@@ -24,12 +24,16 @@ RSpec.describe User, type: :model do
   end
 
   it 'email should be not be too long' do
-    user = User.new(name: 'hoge', email: 'a'*244 + '@example.com')
+    user = User.new(name: 'hoge', email: 'a' * 244 + '@example.com')
     expect(user).not_to be_valid
   end
 
   it 'email validation should accept valid addresses' do
-    valid_addresses = %w[user@example.com USER@foo.COM A_US-ER@foo.bar.org first.last@foo.jp alice+bob@baz.cn]
+    valid_addresses = %w[user@example.com
+                         USER@foo.COM
+                         A_US-ER@foo.bar.org
+                         first.last@foo.jp
+                         alice+bob@baz.cn]
     valid_addresses.each do |valid_address|
       user = User.new(name: 'hoge', email: valid_address)
       expect(user).to be_valid
@@ -37,11 +41,16 @@ RSpec.describe User, type: :model do
   end
 
   it 'email validation should reject invalid addresses' do
-        invalid_addresses = %w[user@example,com user_at_foo.org user.name@example. foo@bar_baz.com foo@bar+baz.com foo@bar..com]
-        invalid_addresses.each do |invalid_address|
-          user = User.new(name: 'hoge', email: invalid_address)
-          expect(user).not_to be_valid
-        end
+    invalid_addresses = %w[user@example,com
+                           user_at_foo.org
+                           user.name@example.
+                           foo@bar_baz.com
+                           foo@bar+baz.com
+                           foo@bar..com]
+    invalid_addresses.each do |invalid_address|
+      user = User.new(name: 'hoge', email: invalid_address)
+      expect(user).not_to be_valid
+    end
   end
 
   it 'email addresses should be unique' do
@@ -58,5 +67,4 @@ RSpec.describe User, type: :model do
     user.save
     expect(user.reload.email).to eq mixed_case_email.downcase
   end
-
 end
