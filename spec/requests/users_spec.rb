@@ -85,7 +85,6 @@ RSpec.describe '/users', type: :request do
   describe 'PATCH /update' do
     context 'with valid parameters' do
       let(:new_attributes) do
-        # {name: 'test', email: 'new_test@mail.com'}
         {email: 'new_test@mail.com'}
       end
 
