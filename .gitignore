@@ -72,8 +72,3 @@ yarn-debug.log*
 /yarn-error.log
 yarn-debug.log*
 .yarn-integrity
-
-# Added ignore files
-docker-compose.yml
-Dockerfile.ci
-database.yml
