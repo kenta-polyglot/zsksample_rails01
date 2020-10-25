@@ -74,5 +74,4 @@ RSpec.describe User, type: :model do
     user.microposts.create!(content: 'Foobar')
     expect { user.destroy }.to change { Micropost.count }.by(-1)
   end
-
 end
