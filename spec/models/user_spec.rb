@@ -67,4 +67,12 @@ RSpec.describe User, type: :model do
     user.save
     expect(user.reload.email).to eq mixed_case_email.downcase
   end
+
+  it 'associated microposts should be destroyed' do
+    user = User.new(name: 'hoge', email: 'hoge@gmail.com')
+    user.save
+    user.microposts.create!(content: 'Foobar')
+    expect { user.destroy }.to change { Micropost.count }.by(-1)
+  end
+
 end
