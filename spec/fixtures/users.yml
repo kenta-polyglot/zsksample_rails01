@@ -1,0 +1,25 @@
+Hoge:
+  name: Hoge
+  email: hoge@example.com
+
+  
+Taro:
+  name: Taro
+  email: taro@example.com
+
+  
+lana:
+  name: Lana Kane
+  email: hands@example.gov
+
+
+malory:
+  name: Malory Archer
+  email: boss@example.gov
+
+
+<% 30.times do |n| %>
+user_<%= n %>:
+  name:  <%= "User #{n}" %>
+  email: <%= "user-#{n}@example.com" %>
+<% end %>
