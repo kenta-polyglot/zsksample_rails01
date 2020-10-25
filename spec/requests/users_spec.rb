@@ -16,11 +16,11 @@ RSpec.describe '/users', type: :request do
   # User. As you add validations to User, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) do
-    skip('Add a hash of attributes valid for your model')
+    { name: 'test', email: 'test@mail.com' }
   end
 
   let(:invalid_attributes) do
-    skip('Add a hash of attributes invalid for your model')
+    { name: '', email: 'test@mail.com' }
   end
 
   describe 'GET /index' do
@@ -85,14 +85,15 @@ RSpec.describe '/users', type: :request do
   describe 'PATCH /update' do
     context 'with valid parameters' do
       let(:new_attributes) do
-        skip('Add a hash of attributes valid for your model')
+        { email: 'new_test@mail.com' }
       end
 
       it 'updates the requested user' do
-        user = User.create! valid_attributes
-        patch user_url(user), params: { user: new_attributes }
-        user.reload
-        skip('Add assertions for updated state')
+        expect do
+          user = User.create! valid_attributes
+          patch user_url(user), params: { user: new_attributes }
+          user.reload
+        end.to change(User, :count).by(1)
       end
 
       it 'redirects to the user' do
