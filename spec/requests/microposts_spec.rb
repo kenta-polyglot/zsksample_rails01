@@ -66,7 +66,7 @@ RSpec.describe '/microposts', type: :request do
         expect do
           post microposts_url, params: { micropost: valid_attributes }
           expect(response).to redirect_to(micropost_url(Micropost.last))
-          #expect(response).to redirect_to(micropost_url(1033843186))            
+          # expect(response).to redirect_to(micropost_url(1033843186))
         end
       end
     end
