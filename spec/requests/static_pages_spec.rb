@@ -12,5 +12,15 @@ RSpec.describe 'StaticPages', type: :request do
       get microposts_url
       assert_select 'div.pagination'
     end
+
+    it 'user index including pagination link' do
+      50.times do |n|
+        name  = Faker::Name.name
+        email = "example-#{n + 1}@railstutorial.org"
+        User.create!(name: name, email: email)
+      end
+      get users_url
+      assert_select 'div.pagination'
+    end
   end
 end
