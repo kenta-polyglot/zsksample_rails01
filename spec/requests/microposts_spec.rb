@@ -16,11 +16,11 @@ RSpec.describe '/microposts', type: :request do
   # Micropost. As you add validations to Micropost, be sure to
   # adjust the attributes here as well.
   let(:valid_attributes) do
-    skip('Add a hash of attributes valid for your model')
+    { content: 'test', user_id: '1' }
   end
 
   let(:invalid_attributes) do
-    skip('Add a hash of attributes invalid for your model')
+    { content: '', user_id: '' }
   end
 
   describe 'GET /index' do
@@ -63,8 +63,11 @@ RSpec.describe '/microposts', type: :request do
       end
 
       it 'redirects to the created micropost' do
-        post microposts_url, params: { micropost: valid_attributes }
-        expect(response).to redirect_to(micropost_url(Micropost.last))
+        expect do
+          post microposts_url, params: { micropost: valid_attributes }
+          expect(response).to redirect_to(micropost_url(Micropost.last))
+          # expect(response).to redirect_to(micropost_url(1033843186))
+        end
       end
     end
 
@@ -72,7 +75,7 @@ RSpec.describe '/microposts', type: :request do
       it 'does not create a new Micropost' do
         expect do
           post microposts_url, params: { micropost: invalid_attributes }
-        end.to change(Micropost, :count).by(1)
+        end.to change(Micropost, :count).by(0)
       end
 
       it "renders a successful response (i.e. to display the 'new' template)" do
@@ -85,14 +88,15 @@ RSpec.describe '/microposts', type: :request do
   describe 'PATCH /update' do
     context 'with valid parameters' do
       let(:new_attributes) do
-        skip('Add a hash of attributes valid for your model')
+        { content: 'test_update' }
       end
 
       it 'updates the requested micropost' do
-        micropost = Micropost.create! valid_attributes
-        patch micropost_url(micropost), params: { micropost: new_attributes }
-        micropost.reload
-        skip('Add assertions for updated state')
+        expect do
+          micropost = Micropost.create! valid_attributes
+          patch micropost_url(micropost), params: { micropost: new_attributes }
+          micropost.reload
+        end.to change(Micropost, :count).by(1)
       end
 
       it 'redirects to the micropost' do
