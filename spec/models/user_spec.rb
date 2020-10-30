@@ -3,6 +3,9 @@ require 'rails_helper'
 RSpec.describe User, type: :model do
   # pending "add some examples to (or delete) #{__FILE__}"
 
+  fixtures :users
+  fixtures :microposts
+
   it 'should be vaild' do
     user = User.new(name: 'hoge', email: 'hoge@gmail.com')
     expect(user).to be_valid
@@ -66,5 +69,17 @@ RSpec.describe User, type: :model do
     user.email = mixed_case_email
     user.save
     expect(user.reload.email).to eq mixed_case_email.downcase
+  end
+
+  it 'associated microposts should be destroyed' do
+    user = User.new(name: 'hoge', email: 'hoge@gmail.com')
+    user.save
+    user.microposts.create!(content: 'Foobar')
+    expect { user.destroy }.to change { Micropost.count }.by(-1)
+  end
+
+  it 'user should be associated to many microposts' do
+    user = users(:Hoge)
+    expect(user.microposts.count).to eq 34
   end
 end
