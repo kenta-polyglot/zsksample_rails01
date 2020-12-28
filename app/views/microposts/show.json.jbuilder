@@ -1,1 +1,1 @@
-json.partial! "microposts/micropost", micropost: @micropost
+json.partial! 'microposts/micropost', micropost: @micropost

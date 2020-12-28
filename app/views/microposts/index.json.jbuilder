@@ -1,1 +1,1 @@
-json.array! @microposts, partial: "microposts/micropost", as: :micropost
+json.array! @microposts, partial: 'microposts/micropost', as: :micropost

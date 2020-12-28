@@ -71,7 +71,9 @@ RSpec.describe '/users', type: :request do
     context 'パラメータが不正な場合' do
       it 'リクエストが成功すること' do
         post users_path, params: { user: FactoryBot.attributes_for(:user, :invalid) }
-        expect(response.status).to eq 302
+        # Userモデルにvalidatesを加えたので、invalidの場合リダイレクトしなくなるので302→200に変更
+        expect(response.status).to eq 200
+      end
     end
   end
   describe 'PATCH /update' do
@@ -81,14 +83,15 @@ RSpec.describe '/users', type: :request do
         expect(response.status).to eq 302
       end
       it 'リダイレクトすること' do
-        put user_path(@user), params: { user: FactoryBot.attributes_for(:user)}
+        put user_path(@user), params: { user: FactoryBot.attributes_for(:user) }
         expect(response).to redirect_to User.last
       end
     end
     context 'パラメータが不正な場合' do
       it 'リクエストが成功すること' do
         put user_path(@user), params: { user: FactoryBot.attributes_for(:user, :invalid) }
-        expect(response.status).to eq 302
+        # Userモデルにvalidatesを加えたので、invalidの場合リダイレクトしなくなるので302→200に変更
+        expect(response.status).to eq 200
       end
     end
   end
@@ -106,6 +109,5 @@ RSpec.describe '/users', type: :request do
       delete user_path(@user)
       expect(response).to redirect_to users_path
     end
-   end
   end
 end
