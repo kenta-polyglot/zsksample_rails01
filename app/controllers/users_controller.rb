@@ -3,8 +3,14 @@ class UsersController < ApplicationController
 
   # GET /users
   # GET /users.json
+
+  PER = 5
+
   def index
-    @users = User.all
+    # @users = User.all
+    @users = User.all.page(params[:page]).per(PER)
+    # @users = kaminari.paginate_array(User.all).page(params[:page]).per(PER)
+    # @users = User.order(id: :asc).page(params[:page])
   end
 
   # GET /users/1

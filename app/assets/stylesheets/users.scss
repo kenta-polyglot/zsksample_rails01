@@ -1,3 +1,12 @@
 // Place all the styles related to the Users controller here.
 // They will automatically be included in application.css.
 // You can use Sass (SCSS) here: https://sass-lang.com/
+.pagination {
+  width: 500px;
+  margin-top: 10px;
+  text-align: center;
+  font-size: 14px;
+  .current {
+    color: black;
+  }
+}
