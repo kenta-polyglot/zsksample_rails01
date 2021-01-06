@@ -10,5 +10,9 @@
   <%= @micropost.user_id %>
 </p>
 
+<% if @micropost.image.attached? %>
+  <%= image_tag @micropost.image.variant(resize: '200x200').processed %>
+<% end %>
+
 <%= link_to 'Edit', edit_micropost_path(@micropost) %> |
 <%= link_to 'Back', microposts_path %>

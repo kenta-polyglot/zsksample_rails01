@@ -91,4 +91,22 @@ RSpec.configure do |config|
   #   # test failures related to randomization by passing the same `--seed` value
   #   # as the one that triggered the failure.
   #   Kernel.srand config.seed
+  config.before(:suite) do
+    # DBを綺麗にする手段を指定、トランザクションを張ってrollbackするように指定
+    DatabaseCleaner.strategy = :transaction
+    # truncate table文を実行し、レコードを消す
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  # exampleが始まるごとに実行
+  config.before(:each) do
+    # strategyがtransactionなので、トランザクションを張る
+    DatabaseCleaner.start
+  end
+
+  # exampleが終わるごとに実行
+  config.after(:each) do
+    # strategyがtransactionなので、rollbackする
+    DatabaseCleaner.clean
+  end
 end

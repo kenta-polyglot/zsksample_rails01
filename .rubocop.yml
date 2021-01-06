@@ -23,3 +23,22 @@ Style/FrozenStringLiteralComment:
 Metrics/BlockLength:
   Exclude:
     - 'spec/**/*'
+
+# AactiveStorageのDBテーブル用に記述
+MethodLength:
+  CountComments: false  # count full line comments?
+  Max: 20
+
+Metrics/AbcSize:
+  Max: 20
+
+# app/model/microsoft.rb用に記述
+Style/Lambda:
+  EnforcedStyle: literal
+
+Style/GuardClause:
+  Enabled: false
+
+Style/IfUnlessModifier:
+  Enabled: false
+  

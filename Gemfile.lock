@@ -75,6 +75,7 @@ GEM
     childprocess (3.0.0)
     concurrent-ruby (1.1.6)
     crass (1.0.6)
+    database_cleaner (1.8.5)
     diff-lcs (1.4.4)
     erubi (1.9.0)
     factory_bot (6.1.0)
@@ -89,6 +90,9 @@ GEM
       activesupport (>= 4.2.0)
     i18n (1.8.3)
       concurrent-ruby (~> 1.0)
+    image_processing (1.12.1)
+      mini_magick (>= 4.9.5, < 5)
+      ruby-vips (>= 2.0.17, < 3)
     jbuilder (2.10.0)
       activesupport (>= 5.0.0)
     kaminari (1.2.1)
@@ -115,6 +119,7 @@ GEM
       mimemagic (~> 0.3.2)
     method_source (1.0.0)
     mimemagic (0.3.5)
+    mini_magick (4.11.0)
     mini_mime (1.0.2)
     mini_portile2 (2.4.0)
     minitest (5.14.1)
@@ -200,6 +205,8 @@ GEM
       rack (>= 1.1)
       rubocop (>= 0.82.0)
     ruby-progressbar (1.10.1)
+    ruby-vips (2.0.17)
+      ffi (~> 1.9)
     rubyzip (2.3.0)
     sass-rails (6.0.0)
       sassc-rails (~> 2.1, >= 2.1.1)
@@ -263,8 +270,10 @@ DEPENDENCIES
   bootsnap (= 1.4.6)
   byebug
   capybara (= 3.33.0)
+  database_cleaner
   factory_bot_rails
   faker
+  image_processing (~> 1.2)
   jbuilder (= 2.10.0)
   kaminari
   listen (= 3.2.1)
