@@ -61,3 +61,5 @@ gem 'tzinfo-data', platforms: %i[mingw mswin x64_mingw jruby]
 
 # paginationを作成するために追加
 gem 'kaminari'
+# エラーメッセージを日本語にする
+gem 'rails-i18n'
