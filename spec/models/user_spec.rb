@@ -55,7 +55,7 @@ RSpec.describe User, type: :model do
       FactoryBot.create(:user, email: 'zskteam1211@example.com')
       user = FactoryBot.build(:user, email: 'ZSKTeam1211@example.com')
       user.valid?
-      expect(user.errors[:email]).to include('has already been taken')
+      expect(user.errors[:email]).to include('はすでに存在します')
     end
   end
 end

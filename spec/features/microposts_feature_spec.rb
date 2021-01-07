@@ -85,7 +85,7 @@ RSpec.feature '/micropost#new', type: :feature do
           fill_in 'Content', with: @micropost.content
           # select(value = @micropost.user_id.to_s, from: 'User')
           select(@micropost.user_id.to_s, from: 'User')
-          click_on 'Create Micropost'
+          click_on '登録する'
         }).to change(Micropost, :count).by(1)
 
         expect(current_path).to eq micropost_path(Micropost.last)
@@ -109,7 +109,7 @@ RSpec.feature '/micropost#new', type: :feature do
             # select(value = @micropost.user_id.to_s, from: 'User')
             select(@micropost.user_id.to_s, from: 'User')
             attach_file 'Image', @valid_image
-            click_on 'Create Micropost'
+            click_on '登録する'
           }).to change(Micropost, :count).by(1)
 
           expect(current_path).to eq micropost_path(Micropost.last)
@@ -131,7 +131,7 @@ RSpec.feature '/micropost#new', type: :feature do
           # select(value = @micropost.user_id.to_s, from: 'User')
           select(@micropost.user_id.to_s, from: 'User')
           attach_file 'Image', @invalid_image
-          click_on 'Create Micropost'
+          click_on '登録する'
 
           expect(page).to have_content 'は5MB以内にしてください'
         end
@@ -149,7 +149,7 @@ RSpec.feature '/micropost#new', type: :feature do
           # select(value = @micropost.user_id.to_s, from: 'User')
           select(@micropost.user_id.to_s, from: 'User')
           attach_file 'Image', @invalid_file
-          click_on 'Create Micropost'
+          click_on '登録する'
 
           expect(page).to have_content 'は画像形式でアップロードしてください'
         end

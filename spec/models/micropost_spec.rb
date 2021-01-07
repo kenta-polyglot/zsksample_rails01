@@ -16,19 +16,19 @@ RSpec.describe Micropost, type: :model do
     it 'contentが空だと投稿できない' do
       @micropost.content = nil
       @micropost.valid?
-      expect(@micropost.errors.full_messages).to include("Content can't be blank")
+      expect(@micropost.errors.full_messages).to include('テキストを入力してください')
     end
     it 'contentが141文字以上だと投稿できない' do
       # 141字のダミーデータ
       @micropost.content = 'この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、
       行間等を確認するために入れています。この文章はダミーです。文字の大きさ、量、字間、行間等を確認するために入れています。この文章はダミーです。文字の大きさは'
       @micropost.valid?
-      expect(@micropost.errors.full_messages).to include('Content is too long (maximum is 140 characters)')
+      expect(@micropost.errors.full_messages).to include('テキストは140文字以内で入力してください')
     end
     it 'userに紐付いていないと投稿できない' do
       @micropost.user = nil
       @micropost.valid?
-      expect(@micropost.errors.full_messages).to include('User must exist')
+      expect(@micropost.errors.full_messages).to include('ユーザーを入力してください')
     end
     # expect(@user).not_to be_valid
   end
