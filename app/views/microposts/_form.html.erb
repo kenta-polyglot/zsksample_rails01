@@ -16,10 +16,14 @@
     <%= form.text_area :content %>
   </div>
 
-  <div class="field">
-    <%= form.label :user_id %>
-    <%= form.number_field :user_id %>
-  </div>
+    <div class="field">
+      <%= form.label :user_id %>
+      <% users = User.pluck(:name, :id) %>
+      <% users.each do |user| %>
+        <% user[0] = "#{user[1]}. #{user[0]}" %>
+      <% end %>
+      <%= form.select :user_id, users, { prompt: '選択してください' } %>
+    </div>
 
   <div class="field">
     <%= form.label :image %>
@@ -29,4 +33,5 @@
   <div class="actions">
     <%= form.submit %>
   </div>
+
 <% end %>

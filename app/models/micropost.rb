@@ -2,6 +2,7 @@ class Micropost < ApplicationRecord
   belongs_to :user
   validates :content, length: { maximum: 140 },
                       presence: true
+  validates :user_id, presence: true # ユーザー選択セレクトボックスエラー時に.field_with_errorsを有したdivが生成されるように追記
   has_one_attached :image # 追記
   validate :image_size, :image_type
 

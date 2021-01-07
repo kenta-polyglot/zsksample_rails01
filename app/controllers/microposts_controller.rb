@@ -9,11 +9,15 @@ class MicropostsController < ApplicationController
 
   # GET /microposts/1
   # GET /microposts/1.json
-  def show; end
+  def show
+    @user = User.find(@micropost.user_id)
+  end
 
   # GET /microposts/new
   def new
     @micropost = Micropost.new
+    @user = User.new
+    @users = User.all
   end
 
   # GET /microposts/1/edit
@@ -23,6 +27,7 @@ class MicropostsController < ApplicationController
   # POST /microposts.json
   def create
     @micropost = Micropost.new(micropost_params)
+    @users = User.all
 
     respond_to do |format|
       if @micropost.save

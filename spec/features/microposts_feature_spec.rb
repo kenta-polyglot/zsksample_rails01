@@ -83,7 +83,8 @@ RSpec.feature '/micropost#new', type: :feature do
 
         expect(-> {
           fill_in 'Content', with: @micropost.content
-          fill_in 'User', with: @micropost.user_id
+          # select(value = @micropost.user_id.to_s, from: 'User')
+          select(@micropost.user_id.to_s, from: 'User')
           click_on 'Create Micropost'
         }).to change(Micropost, :count).by(1)
 
@@ -105,7 +106,8 @@ RSpec.feature '/micropost#new', type: :feature do
 
           expect(-> {
             fill_in 'Content', with: @micropost.content
-            fill_in 'User', with: @micropost.user_id
+            # select(value = @micropost.user_id.to_s, from: 'User')
+            select(@micropost.user_id.to_s, from: 'User')
             attach_file 'Image', @valid_image
             click_on 'Create Micropost'
           }).to change(Micropost, :count).by(1)
@@ -126,7 +128,8 @@ RSpec.feature '/micropost#new', type: :feature do
           visit new_micropost_path
 
           fill_in 'Content', with: @micropost.content
-          fill_in 'User', with: @micropost.user_id
+          # select(value = @micropost.user_id.to_s, from: 'User')
+          select(@micropost.user_id.to_s, from: 'User')
           attach_file 'Image', @invalid_image
           click_on 'Create Micropost'
 
@@ -143,7 +146,8 @@ RSpec.feature '/micropost#new', type: :feature do
           visit new_micropost_path
 
           fill_in 'Content', with: @micropost.content
-          fill_in 'User', with: @micropost.user_id
+          # select(value = @micropost.user_id.to_s, from: 'User')
+          select(@micropost.user_id.to_s, from: 'User')
           attach_file 'Image', @invalid_file
           click_on 'Create Micropost'
 
