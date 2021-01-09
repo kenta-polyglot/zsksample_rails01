@@ -1,17 +1,21 @@
 class MicropostsController < ApplicationController
   before_action :set_micropost, only: %i[show edit update destroy]
+
   PER = 5
   # GET /microposts
   # GET /microposts.json
   def index
     @microposts = Micropost.all.page(params[:page]).per(PER)
+
   end
 
   # GET /microposts/1
   # GET /microposts/1.json
+
   def show
     @user = User.find(@micropost.user_id)
   end
+
 
   # GET /microposts/new
   def new
