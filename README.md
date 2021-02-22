@@ -1,5 +1,3 @@
-# GitHub Actionsのワークフロー実行用に追記
-
 # zsksample_rails01
 
 チーム開発体験用プロジェクト
