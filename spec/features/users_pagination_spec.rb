@@ -1,12 +1,12 @@
 require 'rails_helper'
 
-RSpec.feature "Users", type: :feature do
+RSpec.feature 'Users', type: :feature do
   # 40人のユーザーを作成し、ページネーションテストを行う
   40.times do |n|
     name  = Faker::Name.name
-    email = "example-#{n+1}@railstutorial.org"
-    User.create(name:  name,
-               email: email)
+    email = "example-#{n + 1}@railstutorial.org"
+    User.create(name: name,
+                email: email)
   end
 
   before do
@@ -31,7 +31,7 @@ RSpec.feature "Users", type: :feature do
   describe '2ページ目表示のテスト' do
     context 'Nextボタンをクリックしたとき' do
       before do
-        click_link "Next →"
+        click_link 'Next →'
       end
       it '10人のユーザーが一覧表示される' do
         expect(all('tbody tr').size).to eq 10
@@ -40,7 +40,7 @@ RSpec.feature "Users", type: :feature do
 
     context '2ボタンをクリックしたとき' do
       before do
-        click_link "2"
+        click_link '2'
       end
       it '10人のユーザーが一覧表示される' do
         expect(all('tbody tr').size).to eq 10
@@ -51,8 +51,8 @@ RSpec.feature "Users", type: :feature do
   describe '1ページ目再表示のテスト' do
     context 'Previousボタンをクリックしたとき' do
       before do
-        click_link "Next →"
-        click_link "← Previous"
+        click_link 'Next →'
+        click_link '← Previous'
       end
       it '30人のユーザーが一覧表示される' do
         expect(all('tbody tr').size).to eq 30
@@ -61,8 +61,8 @@ RSpec.feature "Users", type: :feature do
 
     context '1ボタンをクリックしたとき' do
       before do
-        click_link "Next →"
-        click_link "1"
+        click_link 'Next →'
+        click_link '1'
       end
       it '30人のユーザーが一覧表示される' do
         expect(all('tbody tr').size).to eq 30
