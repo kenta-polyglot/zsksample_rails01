@@ -21,6 +21,10 @@ gem 'jbuilder', '2.10.0'
 # gem 'redis', '~> 4.0'
 # Use Active Model has_secure_password
 # gem 'bcrypt', '~> 3.1.7'
+gem 'faker',                   '2.1.2'
+gem 'will_paginate',           '3.1.8'
+gem 'bootstrap-will_paginate', '1.0.0'
+gem 'bootstrap-sass', '3.4.1'
 
 # Use Active Storage variant
 # gem 'image_processing', '~> 1.2'
@@ -32,6 +36,7 @@ group :development, :test do
   # Call 'byebug' anywhere in the code to stop execution and get a debugger console
   gem 'byebug', platforms: %i[mri mingw x64_mingw]
   gem 'rspec-rails', '4.0.1'
+  gem "factory_bot_rails", "~> 4.10.0"
 end
 
 group :development do
