@@ -5,6 +5,8 @@ ruby '2.7.1'
 
 # Bundle edge Rails instead: gem 'rails', github: 'rails/rails'
 gem 'rails', '6.0.3.2'
+# 2.7.2.0未満の最新版をインストールする
+gem 'parser', '< 2.7.2.0'
 # Use postgresql as the database for Active Record
 gem 'pg', '1.2.3'
 # Use Puma as the app server
