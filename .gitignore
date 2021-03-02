@@ -73,4 +73,5 @@ yarn-debug.log*
 yarn-debug.log*
 .yarn-integrity
 
+/config/credentials.yml.enc
 /config/master.key
