@@ -1,7 +1,11 @@
+@import "bootstrap";
+
 body {
   background-color: #fff;
   color: #333;
-  margin: 33px; }
+  margin: 33px; 
+  padding-left: 50px;
+}
 
 body, p, ol, ul, td {
   font-family: verdana, arial, helvetica, sans-serif;

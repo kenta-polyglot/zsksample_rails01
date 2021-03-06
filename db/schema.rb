@@ -20,6 +20,7 @@ ActiveRecord::Schema.define(version: 2020_07_08_033844) do
     t.string "email"
     t.datetime "created_at", precision: 6, null: false
     t.datetime "updated_at", precision: 6, null: false
+    t.index ["email"], name: "idx", unique: true
   end
 
 end
