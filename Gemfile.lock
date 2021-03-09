@@ -266,7 +266,6 @@ DEPENDENCIES
   faker (= 2.1.2)
   jbuilder (= 2.10.0)
   listen (= 3.2.1)
-  parser (< 2.7.2.0)
   pg (= 1.2.3)
   puma (= 4.3.5)
   rails (= 6.0.3.2)
